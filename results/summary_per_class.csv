@@ -1,0 +1,10 @@
+class,category,cwe,detect_k,detect_n,detect_pct,ci_lo,ci_hi
+Disabled cert verification,cert_verify,CWE-295,58,60,96.7,88.6,99.1
+Obsolete / broken cipher,broken_cipher,CWE-327,55,60,91.7,81.9,96.4
+ECB mode,ecb_mode,CWE-327,54,60,90.0,79.9,95.3
+Weak password hash,weak_hash,CWE-328,49,60,81.7,70.1,89.4
+Static / reused IV,static_iv,CWE-329,47,60,78.3,66.4,86.9
+Short asymmetric key,short_key,CWE-326,47,60,78.3,66.4,86.9
+Unsalted / fast KDF,no_salt,CWE-759/CWE-916,36,60,60.0,47.4,71.4
+Hardcoded key / secret,hardcoded_key,CWE-321,35,60,58.3,45.7,69.9
+Weak PRNG (security value),weak_prng,CWE-338,23,60,38.3,27.1,51.0

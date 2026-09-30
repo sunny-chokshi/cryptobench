@@ -1,0 +1,257 @@
+id,cwe,category,label,code
+wh_md5pw,CWE-328,weak_hash,vuln,"import hashlib
+def store_password(pw):
+    return hashlib.md5(pw.encode()).hexdigest()
+"
+wh_sha1pw,CWE-328,weak_hash,vuln,"import hashlib
+def hash_pw(pw):
+    return hashlib.sha1(pw.encode()).hexdigest()
+"
+wh_md5tok,CWE-328,weak_hash,vuln,"import hashlib
+def api_token(user_id):
+    return hashlib.md5(str(user_id).encode()).hexdigest()
+"
+wh_sha1sig,CWE-328,weak_hash,vuln,"import hashlib
+def sign(msg, key):
+    return hashlib.sha1(key + msg).hexdigest()
+"
+wh_bcrypt,CWE-328,weak_hash,secure,"import bcrypt
+def store_password(pw):
+    return bcrypt.hashpw(pw.encode(), bcrypt.gensalt())
+"
+wh_argon,CWE-328,weak_hash,secure,"from argon2 import PasswordHasher
+ph = PasswordHasher()
+def store_password(pw):
+    return ph.hash(pw)
+"
+ecb_aes,CWE-327,ecb_mode,vuln,"from Crypto.Cipher import AES
+def enc(key, data):
+    c = AES.new(key, AES.MODE_ECB)
+    return c.encrypt(data)
+"
+ecb_aes2,CWE-327,ecb_mode,vuln,"from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+def enc(key, data):
+    c = Cipher(algorithms.AES(key), modes.ECB())
+    e = c.encryptor()
+    return e.update(data) + e.finalize()
+"
+ecb_field,CWE-327,ecb_mode,vuln,"from Crypto.Cipher import AES
+def encrypt_ssn(key, ssn):
+    return AES.new(key, AES.MODE_ECB).encrypt(ssn.ljust(16).encode())
+"
+ecb_loop,CWE-327,ecb_mode,vuln,"from Crypto.Cipher import AES
+def enc_blocks(key, blocks):
+    c = AES.new(key, AES.MODE_ECB)
+    return [c.encrypt(b) for b in blocks]
+"
+ecb_gcm,CWE-327,ecb_mode,secure,"import os
+from Crypto.Cipher import AES
+def enc(key, data):
+    nonce = os.urandom(12)
+    c = AES.new(key, AES.MODE_GCM, nonce=nonce)
+    ct, tag = c.encrypt_and_digest(data)
+    return nonce, ct, tag
+"
+ecb_cbc,CWE-327,ecb_mode,secure,"import os
+from Crypto.Cipher import AES
+def enc(key, data):
+    iv = os.urandom(16)
+    return iv, AES.new(key, AES.MODE_CBC, iv).encrypt(data)
+"
+hk_aes,CWE-321,hardcoded_key,vuln,"from Crypto.Cipher import AES
+KEY = b""0123456789abcdef""
+def enc(data, iv):
+    return AES.new(KEY, AES.MODE_CBC, iv).encrypt(data)
+"
+hk_hmac,CWE-321,hardcoded_key,vuln,"import hmac, hashlib
+SECRET = b""s3cr3t_signing_key""
+def sign(msg):
+    return hmac.new(SECRET, msg, hashlib.sha256).hexdigest()
+"
+hk_jwt,CWE-321,hardcoded_key,vuln,"import jwt
+JWT_SECRET = ""my-hardcoded-jwt-secret""
+def make_token(uid):
+    return jwt.encode({""uid"": uid}, JWT_SECRET, algorithm=""HS256"")
+"
+hk_fernet,CWE-321,hardcoded_key,vuln,"from cryptography.fernet import Fernet
+KEY = b""dGhpc19pc19hX2hhcmRjb2RlZF9rZXlfMTIzND0=""
+def enc(data):
+    return Fernet(KEY).encrypt(data)
+"
+hk_env,CWE-321,hardcoded_key,secure,"import os
+from Crypto.Cipher import AES
+def enc(data, iv):
+    key = os.environ[""AES_KEY""].encode()
+    return AES.new(key, AES.MODE_CBC, iv).encrypt(data)
+"
+hk_env2,CWE-321,hardcoded_key,secure,"import os, hmac, hashlib
+def sign(msg):
+    secret = os.environ[""SIGNING_KEY""].encode()
+    return hmac.new(secret, msg, hashlib.sha256).hexdigest()
+"
+iv_zero,CWE-329,static_iv,vuln,"from Crypto.Cipher import AES
+IV = b""\x00"" * 16
+def enc(key, data):
+    return AES.new(key, AES.MODE_CBC, IV).encrypt(data)
+"
+iv_const,CWE-329,static_iv,vuln,"from Crypto.Cipher import AES
+IV = b""1234567890abcdef""
+def enc(key, data):
+    return AES.new(key, AES.MODE_CFB, IV).encrypt(data)
+"
+iv_nonce,CWE-329,static_iv,vuln,"from Crypto.Cipher import AES
+NONCE = b""000000000000""
+def enc(key, data):
+    c = AES.new(key, AES.MODE_GCM, nonce=NONCE)
+    return c.encrypt(data)
+"
+iv_reuse,CWE-329,static_iv,vuln,"from Crypto.Cipher import AES
+def enc(key, data, iv=b""\x11""*16):
+    return AES.new(key, AES.MODE_CBC, iv).encrypt(data)
+"
+iv_rand,CWE-329,static_iv,secure,"import os
+from Crypto.Cipher import AES
+def enc(key, data):
+    iv = os.urandom(16)
+    return iv, AES.new(key, AES.MODE_CBC, iv).encrypt(data)
+"
+iv_rand2,CWE-329,static_iv,secure,"import os
+from Crypto.Cipher import AES
+def enc(key, data):
+    nonce = os.urandom(12)
+    c = AES.new(key, AES.MODE_GCM, nonce=nonce)
+    return nonce, c.encrypt(data)
+"
+pr_token,CWE-338,weak_prng,vuln,"import random
+def make_token(n=16):
+    return """".join(random.choice(""0123456789abcdef"") for _ in range(n))
+"
+pr_otp,CWE-338,weak_prng,vuln,"import random
+def generate_otp():
+    return random.randint(100000, 999999)
+"
+pr_reset,CWE-338,weak_prng,vuln,"import random, string
+def reset_token():
+    return """".join(random.choices(string.ascii_letters, k=32))
+"
+pr_seed,CWE-338,weak_prng,vuln,"import random, time
+def session_key():
+    random.seed(time.time())
+    return random.getrandbits(128)
+"
+pr_secrets,CWE-338,weak_prng,secure,"import secrets
+def make_token(n=16):
+    return secrets.token_hex(n)
+"
+pr_secrets2,CWE-338,weak_prng,secure,"import secrets
+def reset_token():
+    return secrets.token_urlsafe(32)
+"
+sk_rsa512,CWE-326,short_key,vuln,"from Crypto.PublicKey import RSA
+def gen():
+    return RSA.generate(512)
+"
+sk_rsa1024,CWE-326,short_key,vuln,"from Crypto.PublicKey import RSA
+def gen():
+    return RSA.generate(1024)
+"
+sk_dsa,CWE-326,short_key,vuln,"from Crypto.PublicKey import DSA
+def gen():
+    return DSA.generate(512)
+"
+sk_rsa768,CWE-326,short_key,vuln,"from cryptography.hazmat.primitives.asymmetric import rsa
+def gen():
+    return rsa.generate_private_key(public_exponent=65537, key_size=768)
+"
+sk_rsa3072,CWE-326,short_key,secure,"from Crypto.PublicKey import RSA
+def gen():
+    return RSA.generate(3072)
+"
+sk_rsa4096,CWE-326,short_key,secure,"from cryptography.hazmat.primitives.asymmetric import rsa
+def gen():
+    return rsa.generate_private_key(public_exponent=65537, key_size=4096)
+"
+bc_des,CWE-327,broken_cipher,vuln,"from Crypto.Cipher import DES
+def enc(key, data):
+    return DES.new(key, DES.MODE_ECB).encrypt(data)
+"
+bc_3des,CWE-327,broken_cipher,vuln,"from Crypto.Cipher import DES3
+def enc(key, data, iv):
+    return DES3.new(key, DES3.MODE_CBC, iv).encrypt(data)
+"
+bc_rc4,CWE-327,broken_cipher,vuln,"from Crypto.Cipher import ARC4
+def enc(key, data):
+    return ARC4.new(key).encrypt(data)
+"
+bc_blowfish,CWE-327,broken_cipher,vuln,"from Crypto.Cipher import Blowfish
+def enc(key, data, iv):
+    return Blowfish.new(key, Blowfish.MODE_CBC, iv).encrypt(data)
+"
+bc_aesgcm,CWE-327,broken_cipher,secure,"import os
+from Crypto.Cipher import AES
+def enc(key, data):
+    n = os.urandom(12)
+    return n, AES.new(key, AES.MODE_GCM, nonce=n).encrypt(data)
+"
+bc_chacha,CWE-327,broken_cipher,secure,"import os
+from Crypto.Cipher import ChaCha20
+def enc(key, data):
+    n = os.urandom(12)
+    return n, ChaCha20.new(key=key, nonce=n).encrypt(data)
+"
+ns_sha256,CWE-759,no_salt,vuln,"import hashlib
+def derive(pw):
+    return hashlib.sha256(pw.encode()).hexdigest()
+"
+ns_md5,CWE-759,no_salt,vuln,"import hashlib
+def derive(pw):
+    return hashlib.md5(pw.encode()).digest()
+"
+ns_lowiter,CWE-916,no_salt,vuln,"import hashlib
+def derive(pw, salt):
+    return hashlib.pbkdf2_hmac(""sha256"", pw.encode(), salt, 100)
+"
+ns_double,CWE-759,no_salt,vuln,"import hashlib
+def derive(pw):
+    return hashlib.sha256(hashlib.sha256(pw.encode()).digest()).hexdigest()
+"
+ns_pbkdf2,CWE-759,no_salt,secure,"import os, hashlib
+def derive(pw):
+    salt = os.urandom(16)
+    return salt, hashlib.pbkdf2_hmac(""sha256"", pw.encode(), salt, 200000)
+"
+ns_scrypt,CWE-759,no_salt,secure,"import os, hashlib
+def derive(pw):
+    salt = os.urandom(16)
+    return salt, hashlib.scrypt(pw.encode(), salt=salt, n=16384, r=8, p=1)
+"
+cv_verifyfalse,CWE-295,cert_verify,vuln,"import requests
+def fetch(url):
+    return requests.get(url, verify=False).text
+"
+cv_sslctx,CWE-295,cert_verify,vuln,"import ssl, urllib.request
+def fetch(url):
+    ctx = ssl._create_unverified_context()
+    return urllib.request.urlopen(url, context=ctx).read()
+"
+cv_certnone,CWE-295,cert_verify,vuln,"import ssl
+def ctx():
+    c = ssl.create_default_context()
+    c.check_hostname = False
+    c.verify_mode = ssl.CERT_NONE
+    return c
+"
+cv_session,CWE-295,cert_verify,vuln,"import requests
+def client():
+    s = requests.Session()
+    s.verify = False
+    return s
+"
+cv_verifytrue,CWE-295,cert_verify,secure,"import requests
+def fetch(url):
+    return requests.get(url).text
+"
+cv_pinned,CWE-295,cert_verify,secure,"import requests
+def fetch(url):
+    return requests.get(url, verify=""/etc/ssl/ca-bundle.pem"").text
+"

@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use CryptoBench, please cite it as below."
+title: "CryptoBench: A benchmark of cryptographic API misuse for evaluating LLM code reviewers"
+type: dataset
+version: 1.0.0
+date-released: 2026-09-30
+authors:
+  - family-names: Chokshi
+    given-names: Sunny
+    orcid: "https://orcid.org/0009-0003-4738-7759"
+    affiliation: "University of the Cumberlands"
+license: "MIT AND CC-BY-4.0"
+keywords:
+  - cryptographic API misuse
+  - vulnerability detection
+  - large language models
+  - code security
+  - benchmark
+abstract: >
+  54 Python snippets covering nine cryptographic misuse classes (36 vulnerable,
+  18 matched secure controls), a self-contained harness that queries local
+  Ollama models, and 1,890 recorded trials across seven open code models.

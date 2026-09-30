@@ -1,5 +1,8 @@
 # CryptoBench
 
+[![DOI](https://zenodo.org/badge/1398425562.svg)](https://doi.org/10.5281/zenodo.23067051)
+
+
 A small, controlled benchmark for one question: **when a locally run code model reviews Python, which classes of cryptographic API misuse does it catch, and which does it miss?**
 
 CryptoBench contains 54 short Python snippets across nine misuse classes, a self-contained harness that queries models through [Ollama](https://ollama.com), and the full record of 1,890 trials across seven open code models. Every number in the accompanying paper can be regenerated from this repository with one command.
@@ -85,7 +88,7 @@ Per-class counts are small (four snippets per class), so lean on the class order
 
 Paper: S. Chokshi, "Known-Bad Names, Unknown-Bad Uses: What Local Code Models Detect When They Review Cryptographic API Misuse," 2026, manuscript.
 
-Dataset: see `CITATION.cff`. A Zenodo DOI will be added here once minted.
+Dataset: S. Chokshi, "CryptoBench: A benchmark of cryptographic API misuse for evaluating LLM code reviewers," v1.0.0, Zenodo, 2026. doi:10.5281/zenodo.23067052. All versions: doi:10.5281/zenodo.23067051. See also `CITATION.cff`.
 
 ## License
 

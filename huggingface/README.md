@@ -60,7 +60,7 @@ Four of seven models flag nearly all code as vulnerable and are non-discriminati
 
 ## Harness and reproduction
 
-The harness and analysis script live in the companion GitHub repository (link to be added). `python3 scripts/analyze.py` regenerates every number above with Wilson 95% intervals.
+The harness and analysis script live in the companion GitHub repository: https://github.com/sunny-chokshi/cryptobench `python3 scripts/analyze.py` regenerates every number above with Wilson 95% intervals.
 
 ## Safety
 
@@ -68,6 +68,6 @@ All snippets are synthetic. No real credentials, no exploit code, nothing that t
 
 ## Citation
 
-S. Chokshi, "Known-Bad Names, Unknown-Bad Uses: What Local Code Models Detect When They Review Cryptographic API Misuse," 2026, manuscript. Dataset DOI via Zenodo to be added.
+S. Chokshi, "Known-Bad Names, Unknown-Bad Uses: What Local Code Models Detect When They Review Cryptographic API Misuse," 2026, manuscript. Dataset: CryptoBench v1.0.0, Zenodo, 2026. doi:10.5281/zenodo.23067052
 
 Author: Sunny Chokshi, University of the Cumberlands. ORCID 0009-0003-4738-7759.

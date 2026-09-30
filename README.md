@@ -99,3 +99,9 @@ Code is MIT. Data and results are CC BY 4.0. See `LICENSE`.
 ## Author
 
 Sunny Chokshi, University of the Cumberlands. ORCID [0009-0003-4738-7759](https://orcid.org/0009-0003-4738-7759).
+
+---
+
+CryptoBench v1.0.0, released 2026-09-30. Permanent archive: [doi:10.5281/zenodo.23067052](https://doi.org/10.5281/zenodo.23067052).
+
+&nbsp;

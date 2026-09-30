@@ -2,6 +2,8 @@
 
 [![DOI](https://zenodo.org/badge/1398425562.svg)](https://doi.org/10.5281/zenodo.23067051)
 
+Also on Hugging Face: [sunny-chokshi/cryptobench](https://huggingface.co/datasets/sunny-chokshi/cryptobench)
+
 
 A small, controlled benchmark for one question: **when a locally run code model reviews Python, which classes of cryptographic API misuse does it catch, and which does it miss?**
 

@@ -19,7 +19,7 @@ configs:
   - config_name: snippets
     data_files: snippets.jsonl
   - config_name: results
-    data_files: crypto_results.csv
+    data_files: crypto_results.jsonl
 ---
 
 # CryptoBench
@@ -48,7 +48,7 @@ A controlled benchmark for measuring which classes of **cryptographic API misuse
 
 **`snippets`** (`snippets.jsonl`): `id`, `cwe`, `category`, `label` (`vuln` or `secure`), `code`.
 
-**`results`** (`crypto_results.csv`): `ts`, `model`, `sample_id`, `cwe`, `category`, `label`, `verdict`, `detected`, `correct`, `repeat`, `note`.
+**`results`** (`crypto_results.jsonl`): `ts`, `model`, `sample_id`, `cwe`, `category`, `label`, `verdict`, `detected`, `correct`, `repeat`, `note`.
 
 ## Models in the results
 

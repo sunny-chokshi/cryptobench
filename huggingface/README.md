@@ -27,7 +27,7 @@ configs:
 A controlled benchmark for measuring which classes of **cryptographic API misuse** a code-reviewing language model catches, and which it misses.
 
 - **54 Python snippets** across nine misuse classes: 36 vulnerable, 18 matched secure controls that do the same task correctly.
-- **1,890 recorded trials**: every snippet, 5 repeats, 7 open code models run locally through Ollama at temperature 0.
+- **1,890 recorded trials**: every snippet, 5 repeats, 7 open code models run locally through Ollama at its default sampling settings.
 - **Verdict-only protocol**: the model answers `VERDICT: VULNERABLE` or `VERDICT: SAFE` with a one-sentence reason.
 
 ## Misuse classes
@@ -68,6 +68,8 @@ All snippets are synthetic. No real credentials, no exploit code, nothing that t
 
 ## Citation
 
-S. Chokshi, "Known-Bad Names, Unknown-Bad Uses: What Local Code Models Detect When They Review Cryptographic API Misuse," 2026, manuscript. Dataset: CryptoBench v1.0.0, Zenodo, 2026. doi:10.5281/zenodo.23067052
+Paper: S. Chokshi, "Known-Bad Names, Unknown-Bad Uses: What Local Code Models Detect When They Review Cryptographic API Misuse," preprint, Zenodo, 2026. doi:10.5281/zenodo.23113861
+
+Dataset: S. Chokshi, CryptoBench, Zenodo, 2026. All versions: doi:10.5281/zenodo.23067051 (v1.0.0: doi:10.5281/zenodo.23067052)
 
 Author: Sunny Chokshi, University of the Cumberlands. ORCID 0009-0003-4738-7759.

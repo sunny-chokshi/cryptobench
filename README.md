@@ -46,7 +46,7 @@ Columns in `results/crypto_results.csv`: `ts, model, sample_id, cwe, category, l
 
 ## Models evaluated
 
-qwen2.5-coder at 0.5B, 1.5B, 3B, 7B and 14B (a size ladder within one family), plus deepseek-coder 6.7B and codellama 7B. All run locally through Ollama at temperature 0, five repeats per snippet. No trial errored.
+qwen2.5-coder at 0.5B, 1.5B, 3B, 7B and 14B (a size ladder within one family), plus deepseek-coder 6.7B and codellama 7B. All run locally through Ollama with its default sampling settings (the harness sets no decoding options, so repeats sample the default behavior rather than one deterministic decode), five repeats per snippet. No trial errored.
 
 ## Headline results
 
@@ -84,13 +84,13 @@ Results append to `crypto_results.csv` in the working directory. Set `OLLAMA_END
 
 ## Limitations
 
-Per-class counts are small (four snippets per class), so lean on the class ordering and the size-flatness rather than any single percentage. Everything is Python. The verdict-only protocol measures detection, not whether a model could repair the code. Models were run at default quantization and with one fixed prompt.
+Per-class counts are small (four vulnerable and two secure snippets per class), so lean on the class ordering rather than any single percentage. Everything is Python. The verdict-only protocol measures detection, not whether a model could repair the code. Models were run at default quantization, default sampling and with one fixed prompt. When a reply had no VERDICT line, a fallback rule scored it; this mostly affects qwen2.5-coder 0.5B (174 of 270 replies), a model already treated as non-discriminating. The `note` column keeps only the first 120 characters of each reply.
 
 ## Citation
 
-Paper: S. Chokshi, "Known-Bad Names, Unknown-Bad Uses: What Local Code Models Detect When They Review Cryptographic API Misuse," 2026, manuscript.
+Paper: S. Chokshi, "Known-Bad Names, Unknown-Bad Uses: What Local Code Models Detect When They Review Cryptographic API Misuse," preprint, Zenodo, 2026. doi:[10.5281/zenodo.23113861](https://doi.org/10.5281/zenodo.23113861).
 
-Dataset: S. Chokshi, "CryptoBench: A benchmark of cryptographic API misuse for evaluating LLM code reviewers," v1.0.0, Zenodo, 2026. doi:10.5281/zenodo.23067052. All versions: doi:10.5281/zenodo.23067051. See also `CITATION.cff`.
+Dataset: S. Chokshi, "CryptoBench: A benchmark of cryptographic API misuse for evaluating LLM code reviewers," Zenodo, 2026. All versions: doi:10.5281/zenodo.23067051 (v1.0.0: doi:10.5281/zenodo.23067052). See also `CITATION.cff`.
 
 ## License
 
@@ -102,6 +102,6 @@ Sunny Chokshi, University of the Cumberlands. ORCID [0009-0003-4738-7759](https:
 
 ---
 
-CryptoBench v1.0.0, released 2026-09-30. Permanent archive: [doi:10.5281/zenodo.23067052](https://doi.org/10.5281/zenodo.23067052).
+CryptoBench v1.0.1, released 2026-10-03 (documentation fix: sampling settings stated correctly; data and results unchanged from v1.0.0). Permanent archive, all versions: [doi:10.5281/zenodo.23067051](https://doi.org/10.5281/zenodo.23067051).
 
 &nbsp;

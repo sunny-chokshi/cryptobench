@@ -2,10 +2,10 @@ cff-version: 1.2.0
 message: "If you use CryptoBench, please cite it as below."
 title: "CryptoBench: A benchmark of cryptographic API misuse for evaluating LLM code reviewers"
 type: dataset
-version: 1.0.0
-doi: 10.5281/zenodo.23067052
+version: 1.0.1
+doi: 10.5281/zenodo.23067051
 repository-code: "https://github.com/sunny-chokshi/cryptobench"
-date-released: 2026-09-30
+date-released: 2026-10-03
 authors:
   - family-names: Chokshi
     given-names: Sunny

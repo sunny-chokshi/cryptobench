@@ -1,9 +1,31 @@
 {
   "title": "CryptoBench: A benchmark of cryptographic API misuse for evaluating LLM code reviewers",
   "upload_type": "dataset",
-  "description": "54 Python snippets covering nine cryptographic misuse classes (36 vulnerable, 18 matched secure controls), a self-contained harness that queries local Ollama models with a fixed verdict-only prompt, and 1,890 recorded trials across seven open code models (qwen2.5-coder 0.5B to 14B, deepseek-coder 6.7B, codellama 7B). Includes an analysis script that reproduces per-model and per-class detection rates with Wilson 95% confidence intervals.",
-  "creators": [{"name": "Chokshi, Sunny", "affiliation": "University of the Cumberlands", "orcid": "0009-0003-4738-7759"}],
-  "keywords": ["cryptographic API misuse", "vulnerability detection", "large language models", "code security", "benchmark", "CWE"],
+  "description": "54 Python snippets covering nine cryptographic misuse classes (36 vulnerable, 18 matched secure controls), a self-contained harness that queries local Ollama models with a fixed verdict-only prompt, and 1,890 recorded trials across seven open code models (qwen2.5-coder 0.5B to 14B, deepseek-coder 6.7B, codellama 7B). Includes an analysis script that reproduces per-model and per-class detection rates with Wilson 95% confidence intervals. v1.0.1 corrects the documentation: the harness sets no decoding options, so models ran at Ollama default sampling (v1.0.0 README wrongly said temperature 0). Data and results are unchanged.",
+  "creators": [
+    {
+      "name": "Chokshi, Sunny",
+      "affiliation": "University of the Cumberlands",
+      "orcid": "0009-0003-4738-7759"
+    }
+  ],
+  "keywords": [
+    "cryptographic API misuse",
+    "vulnerability detection",
+    "large language models",
+    "code security",
+    "benchmark",
+    "CWE"
+  ],
   "license": "cc-by-4.0",
-  "access_right": "open"
+  "access_right": "open",
+  "version": "1.0.1",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.23113861",
+      "relation": "isSupplementTo",
+      "resource_type": "publication-preprint",
+      "scheme": "doi"
+    }
+  ]
 }

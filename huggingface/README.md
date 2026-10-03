@@ -18,17 +18,30 @@ size_categories:
 configs:
   - config_name: snippets
     data_files: snippets.jsonl
+    default: true
   - config_name: results
     data_files: crypto_results.jsonl
 ---
 
-# CryptoBench
+# CryptoBench: Testing LLM Detection of Cryptographic API Misuse
 
 A controlled benchmark for measuring which classes of **cryptographic API misuse** a code-reviewing language model catches, and which it misses.
 
 - **54 Python snippets** across nine misuse classes: 36 vulnerable, 18 matched secure controls that do the same task correctly.
 - **1,890 recorded trials**: every snippet, 5 repeats, 7 open code models run locally through Ollama at its default sampling settings.
 - **Verdict-only protocol**: the model answers `VERDICT: VULNERABLE` or `VERDICT: SAFE` with a one-sentence reason.
+
+## Try it in 2 minutes
+
+```python
+from datasets import load_dataset
+snippets = load_dataset("sunny-chokshi/cryptobench", "snippets", split="train")
+results = load_dataset("sunny-chokshi/cryptobench", "results", split="train")
+print(snippets[0]["category"], snippets[0]["label"])
+print(snippets[0]["code"])
+```
+
+To test your own model, use the harness in the GitHub repository (`python3 crypto_bench.py --model <ollama-model> --repeats 5`) and share the result.
 
 ## Misuse classes
 

@@ -100,6 +100,8 @@ Code is MIT. Data and results are CC BY 4.0. See `LICENSE`.
 
 Sunny Chokshi, University of the Cumberlands. ORCID [0009-0003-4738-7759](https://orcid.org/0009-0003-4738-7759).
 
+Website: [sunny-chokshi.github.io](https://sunny-chokshi.github.io/)
+
 ---
 
 CryptoBench v1.0.1, released 2026-10-03 (documentation fix: sampling settings stated correctly; data and results unchanged from v1.0.0). Permanent archive, all versions: [doi:10.5281/zenodo.23067051](https://doi.org/10.5281/zenodo.23067051).

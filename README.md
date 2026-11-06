@@ -82,6 +82,16 @@ python3 scripts/analyze.py
 
 Results append to `crypto_results.csv` in the working directory. Set `OLLAMA_ENDPOINT` to point at a non-default server.
 
+## Add your model's results
+
+CryptoBench reports seven models. If you run another one, I would like the rows.
+
+1. Run the harness unchanged: `python3 crypto_bench.py --model <your-model> --repeats 5`. Use Ollama, or set `OLLAMA_ENDPOINT` to another server that speaks the same `/api/chat` API. Do not change the snippets, the prompt or the repeat count.
+2. Summarize it: `python3 scripts/analyze.py path/to/crypto_results.csv` writes the per-model and per-class tables next to that file. Look at the false-positive rate on the secure snippets as well as detection. A model that flags everything is not a good reviewer.
+3. Open a pull request that adds `results/community/<model-tag>/crypto_results.csv` (raw rows, not only summaries) and a short `INFO.md` with: model name and tag, quantization, Ollama version, hardware, run date, the harness commit (`git rev-parse --short HEAD`), and any change to the defaults. Use `_` in place of `:` in the folder name.
+
+I add runs that follow these steps to a community table in this README, with a link to the pull request. Questions or problems: open an issue.
+
 ## Limitations
 
 Per-class counts are small (four vulnerable and two secure snippets per class), so lean on the class ordering rather than any single percentage. Everything is Python. The verdict-only protocol measures detection, not whether a model could repair the code. Models were run at default quantization, default sampling and with one fixed prompt. When a reply had no VERDICT line, a fallback rule scored it; this mostly affects qwen2.5-coder 0.5B (174 of 270 replies), a model already treated as non-discriminating. The `note` column keeps only the first 120 characters of each reply.
